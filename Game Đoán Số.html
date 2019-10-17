@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game đoán số</title>
+</head>
+<body>
+<script>
+    let arr = [];
+    for (i = 0; i < 100; i++) {
+        arr[i] = Math.floor(Math.random() * 100 + 1);
+    }
+    let char = prompt('Hãy nhập phần tử tìm kiếm:');
+
+    function timKiem() {
+        for (i = 0; i < 100; i++) {
+            if (char === arr[i]) {
+                document.write('Found ' + char + ' ở vị trí: ' + i);
+                return;
+            }
+        }
+        document.write('Not found');
+    }
+
+    arr.sort(function (a, b) {
+        a - b;
+    });
+
+    function nhiphan(char, arr, start, end) {
+        let mid = Math.floor(start + end) / 2;
+        let a = arr[mid];
+        if (start > mid) {
+            document.write('Not found');
+            return;
+        }
+        if (arr[mid] === char) {
+            document.write('Found ' + char + ' ở vị trí: ' + mid);
+            return true;
+        } else if (arr[mid] > char) {
+            nhiphan(char, arr, start, mid - 1);
+        } else {
+            nhiphan(char, arr, mid + 1, end);
+        }
+    }
+
+</script>
+</body>
+</html>
